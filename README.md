@@ -9,7 +9,8 @@ Yleisiä linkkejä:
 
 [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Elektroninen_keittokirja.html) 
 
-##Linkki suunniteltuihin sivuihin
+## Linkki suunniteltuihin sivuihin
+
 * [Linkki sovellukseeni](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/reseptinmuokkaus)
 * [Linkki sovellukseeni](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/reseptilista)
 * [Linkki sovellukseeni](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/resepti)
