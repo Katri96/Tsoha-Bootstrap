@@ -1,1 +1,5 @@
--- Lisää DROP TABLE lauseet tähän tiedostoon
+
+DROP TABLE IF EXISTS Aine CASCADE; -- Muista IF EXISTS ja CASCADE parametrit!
+DROP TABLE IF EXISTS Resepti CASCADE;
+DROP TABLE IF EXISTS Arviointi CASCADE;
+DROP TABLE IF EXISTS Kayttaja CASCADE;
