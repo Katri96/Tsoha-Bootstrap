@@ -8,14 +8,32 @@
     HelloWorldController::sandbox();
   });
   $routes->get('/reseptilista', function() {
-      reseptilistacontroller::reseptilista();
+      resepticontroller::reseptilista();
   });
   $routes->get('/login', function() {
   logincontroller::login();
   });
+  $routes->get('/login/1', function() {
+  logincontroller::loginjuttui();
+  });
+
   $routes->get('/resepti', function() {
       resepticontroller::resepti();
   });
+ 
   $routes->get('/reseptinmuokkaus', function() {
-      reseptinmuokkauscontroller::reseptinmuokkaus();
+      resepticontroller::reseptinmuokkaus();
+  });
+ $routes->get('/reseptinlisays', function() {
+     resepticontroller::reseptinlisays();
+  });
+$routes->post('/reseptinlisays/store', function(){
+  resepticontroller::store();
+});
+
+$routes->get('/reseptinlisays/new', function(){
+  resepticontroller::save();
+});
+  $routes->get('/resepti/::id', function() {
+      resepticontroller::show($id);
   });
