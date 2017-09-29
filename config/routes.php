@@ -16,6 +16,13 @@
   $routes->get('/login/1', function() {
   logincontroller::loginjuttui();
   });
+  $routes->post('/login', function(){
+  // Kirjautumisen käsittely
+  logincontroller::handle_login();
+});
+  $routes->get('/register', function() {
+      logincontroller::register();
+  });
 
   $routes->get('/resepti', function() {
       resepticontroller::resepti();
@@ -37,3 +44,16 @@ $routes->get('/reseptinlisays/new', function(){
   $routes->get('/resepti/::id', function() {
       resepticontroller::show($id);
   });
+  $routes->get('/resepti/:id/edit', function($id){
+  // Reseptin muokkauksen esittäminen
+  reseptiController::edit($id);
+});
+$routes->post('/resepti/:id/edit', function($id){
+  // Pelin muokkaaminen
+  reseptiController::update($id);
+});
+
+$routes->post('/resepti/:id/destroy', function($id){
+  // Pelin poisto
+  reseptiController::destroy($id);
+});

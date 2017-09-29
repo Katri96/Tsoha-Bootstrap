@@ -9,7 +9,7 @@ INSERT INTO Kayttaja (name, password) VALUES ('Leipuri12', 'lolwut');
 
 INSERT INTO Resepti (name) VALUES ('Porkkanakakku');
 
-INSERT INTO Resepti (name) VALUES ('Leivos');
+INSERT INTO Resepti (name, description) VALUES ('Leivos', 'tee leivos');
 
 INSERT INTO Resepti (name) VALUES ('Kasviskeitto');
 

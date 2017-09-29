@@ -6,36 +6,28 @@ and open the template in the editor.
 -->
 <html>
     <head>
-            
+          <title>PHP in HTML Example</title>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
 
-        <title>Muokaa reseptiä</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+   </head>
     <body>
-        
-  <table class="table table-bordered table-striped">
-            <h1>{{resepti.name}}</h1>
+         <h1>Login</h1>
 
-
-
-  <form method="post" action="{{base_path}}/resepti">
+  <form method="post" action="{{base_path}}/login">
     <div class="form-group">
-      <label>Nimi</label>
-      <input name="name" class="form-control" value="{{resepti.name}}" type="text">
+      <label>Username</label>
+      <input name="name" class="form-control" type="text">
     </div>
 
     <div class="form-group">
-      <label>Ohje</label>
-      <input name="publisher" class="form-control"  value="{{resepti.description}}" type="text">
+      <label>Password</label>
+      <input name="password" class="form-control" type="password">
     </div>
 
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
-    </div>
-  </form>
-
+    <button type="submit" class="btn btn-default">Login</button>
+</form>
     </body>
 </html>

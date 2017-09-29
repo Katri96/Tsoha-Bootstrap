@@ -47,4 +47,26 @@ public static function all(){
 
     return null;
   }
+  
+    public static function authenticate($name, $password) {
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE name = :name AND password = :password LIMIT 1');
+        $query->execute(array(
+            'name' => $name,
+            'password' => $password
+        ));
+        $row = $query->fetch();
+        
+        if ($row) {
+            $user = new Kayttaja(array(
+            'id' => $row['id'],
+            'name' => $row['name'],
+            'password' => $row['password']
+            ));
+            return $user;
+        } else {
+            return null;
+        }
+    }
+    
+    
 }

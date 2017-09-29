@@ -18,14 +18,8 @@ require 'app/models/resepti.php';
     public static function resepti(){
       // Testaa koodiasi täällä
       
-      $ruoka = new Resepti(array('id'=> 1, 'name'=> 'nimi', 'description' => 'jtn', 'date' => 2));
-      $test = $ruoka->name;
-      echo $test;
-      $reseptit = Resepti::find(1);
-      $reseptit = Resepti::all();
-      Kint::dump($reseptit);
-      Kint::dump($ruoka);
-      View::make('resepti.html', array('reseptit'=> $reseptit));
+    
+      View::make('resepti.html');
   
        }
        public static function highest(){
@@ -52,17 +46,17 @@ require 'app/models/resepti.php';
 
     public static function store(){
 
-    $params = $_POST;
-
-    $resepti = new Resepti(array(
-        'id' => resepticontroller::highest() +1,
-        'name' => $params['name']
-    ));
-    
-    Kint::dump($params);
+     $params = $_POST;
+        
+        $attributes = array(
+            'id' => resepticontroller::highest() +1,
+            'name' => $params['name'],
+            'description' => $params['description']
+        );
+    $resepti = new Resepti($attributes);
    
     $resepti-> save();
-    Redirect::to('/resepti' . $resepti->id, array('message' => 'Resepti lisätty!'));
+    Redirect::to('/reseptilista' , array('message' => 'Resepti lisätty!'));
   }
     public function save(){
     // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
@@ -75,4 +69,45 @@ require 'app/models/resepti.php';
     Kint::dump($row);
     $this->id = $row['id'];
   }
+  // viikko 4 
+  
+  public static function edit($id){
+    $resepti = Resepti::find($id);
+    View::make('resepti/edit.html', array('attributes' => $resepti));
+  }
+
+  // Reseptin muokkaaminen (lomakkeen käsittely)
+  public static function update($id){
+    $params = $_POST;
+
+    $attributes = array(
+      'name' => $params['name'],
+      'description' => $params['description']
+    );
+
+    // Alustetaan Resepti-olio käyttäjän syöttämillä tiedoilla
+    $resepti = new Resepti($attributes);
+    $errors = $resepti->errors();
+
+    if(count($errors) > 0){
+      View::make('resepti/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+    }else{
+      // Kutsutaan alustetun olion update-metodia, joka päivittää reseptin tiedot tietokannassa
+      $resepti->update();
+
+      Redirect::to('/resepti/' . $resepti->id, array('message' => 'Resepti muokattu'));
+    }
+  }
+
+  // Reseptin poistaminen
+  public static function destroy($id){
+    // Alustetaan Game-olio annetulla id:llä
+    $resepti = new Resepti(array('id' => $id));
+    // Kutsutaan Game-malliluokan metodia destroy, joka poistaa pelin sen id:llä
+    $resepti->destroy();
+
+    // Ohjataan käyttäjä pelien listaussivulle ilmoituksen kera
+    Redirect::to('/resepti', array('message' => 'Resepti poistettu'));
+  }
+
   }

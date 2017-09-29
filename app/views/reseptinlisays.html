@@ -18,17 +18,12 @@ and open the template in the editor.
   <form method="post" action="{{base_path}}/reseptinlisays/store">
     <div class="form-group">
       <label>Nimi</label>
-      <input name="name" class="form-control" type="text">
+      <input name="name" class="form-control" value ="{{attributes.name}}" type="text">
     </div>
 
     <div class="form-group">
       <label>Ohje</label>
-      <input name="ohje" class="form-control" type="text">
-    </div>
-
-    <div class="form-group">
-      <label>Lisäyspäivä</label>
-      <input name="date" class="form-control" type="number">
+      <input name="description" class="form-control" value ="{{attributes.description}}" type="text">
     </div>
 
 

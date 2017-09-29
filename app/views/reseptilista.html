@@ -30,16 +30,14 @@ and open the template in the editor.
       <tr>
         <th>Nimi</th>
         <th>Ohje</th>
-         <th>Lisäyspäivä</th>
          
       </tr>
     </thead>
     <tbody>
         {% for resepti in reseptit %}
-      <tr>
+        <tr>
         <td>{{resepti.name}}</td>
         <td>{{resepti.description}}</td>
-        <td>{{resepti.date}}</td>
       </tr>
      
       {% endfor %}

@@ -2,18 +2,14 @@
 
 class Resepti extends BaseModel {
     
-    public $id, $aine_id, $name, $description, $date;
+    public $id, $aine_id, $name, $tyyppi, $hinta, $description, $added;
     
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('name', 'type', 'price', 'description', 'added');
+        $this->validators = array('vname', 'vdescription');
 
     }
     
-    public static function lisaa() {
-  //     $ruoka = new Resepti('id'=> 1, 'name'=> 'nimi', 'description' => 'jtn', 'date' => 2);
-      
-    }
     public static function all() {    
     
     $query = DB::connection()->prepare('SELECT * FROM Resepti');
@@ -24,10 +20,8 @@ class Resepti extends BaseModel {
     foreach($rows as $row){
       $reseptit[] = new Resepti(array(
         'id' => $row['id'],
-        'aine_id' => $row['aine_id'],
         'name' => $row['name'],
-        'description' => $row['description'],
-        'added' => $row['added']
+        'description' => $row['description']
       ));
 
       return $reseptit;
@@ -43,10 +37,8 @@ class Resepti extends BaseModel {
     if($row){
       $resepti = new Resepti(array(
         'id' => $row['id'],
-        'aine_id' => $row['aine_id'],
         'name' => $row['name'],
-        'description' => $row['description'],
-        'added' => $row['added']
+        'description' => $row['description']
       ));
 
       return $resepti;
@@ -54,5 +46,26 @@ class Resepti extends BaseModel {
 
     return null;
   }
+  // viikko 4 
+  
+    
+    public function save(){
+        $query = DB::connection()->prepare('INSERT INTO Resepti (name, description) VALUES (:name, :description) RETURNING id');
+        $query->execute(array('name' => $this->name, 'description' => $this->description));
+        $row = $query->fetch();
+        $this->id = $row['id'];
+         
+    }
+    
+    public function destroy(){
+        $query = DB::connection()->prepare('DELETE FROM Resepti WHERE resepti_id = :id');
+        $query->execute(array('id' => $this->id));
+
+    }
+    
+    public function update($id){
+        $query = DB::connection()->prepare('UPDATE Resepti SET name = :name, description = :description WHERE id = :id');
+        $query->execute(array('name' => $this->name, 'description' => $this->description, 'id' => $id)); 
+    }
     
 }
