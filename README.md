@@ -11,6 +11,11 @@ Yleisiä linkkejä:
 
 ## Linkki suunniteltuihin sivuihin
 
-* [Linkki sovellukseeni](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/reseptinmuokkaus)
-* [Linkki sovellukseeni](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/reseptilista)
-* [Linkki sovellukseeni](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/resepti)
+
+* [Linkki reseptin lisäämiseen](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/reseptinlisays)
+* [Linkki rekisteröintisivulle](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/register)
+* [Linkki kirjautumissivulle](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/login)
+* [Linkki reseptin muokkaukseen](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/reseptinmuokkaus)
+* [Linkki reseptilistaan](http://mkatri.users.cs.helsinki.fi/tsoha_projekti/reseptilista)
+
+

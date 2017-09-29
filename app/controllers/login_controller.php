@@ -1,5 +1,5 @@
 <?php
-require 'app/models/login.php';
+
 require 'app/models/kayttaja.php';
  class logincontroller extends BaseController {
      
@@ -24,6 +24,8 @@ require 'app/models/kayttaja.php';
     }
     public static function handle_login(){
     $params = $_POST;
+
+    Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $user->name . '!'));
 
     $user = Kayttaja::authenticate($params['name'], $params['password']);
 
