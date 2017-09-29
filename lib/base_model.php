@@ -25,5 +25,33 @@
 
       return $errors;
     }
+    
+    public function validate_name() {
+        $errors = array();
+        
+        if($this->nimi == '' || $this->nimi == null){
+            $errors[] = 'Name cannot be empty.';
+        }
+        if(strlen($this->nimi) < 3){
+            $errors[] = 'Name must be at least 3 characters.';
+        }
+        if(strlen($this->nimi) > 60){
+            $errors[] = 'Name must not be over 60 characters.';
+        }
+        return $errors;
+    }
+    
+    public function validate_description() {
+        $errors = array();
+        
+        if($this->kuvaus == '' || $this->kuvaus == null){
+            $errors[] = 'Introduction cannot be empty.';
+        }
+        if(strlen($this->kuvaus) > 300){
+            $errors[] = 'Introduction must not be over 300 characters.';
+        }
+        return $errors;
+    }
+    
 
   }

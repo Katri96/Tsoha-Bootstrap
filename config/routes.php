@@ -23,9 +23,9 @@
   $routes->get('/register', function() {
       logincontroller::register();
   });
-
-  $routes->get('/resepti', function() {
-      resepticontroller::resepti();
+  
+    $routes->get('/resepti/:id', function($id) {
+      resepticontroller::resepti($id);
   });
  
   $routes->get('/reseptinmuokkaus', function() {

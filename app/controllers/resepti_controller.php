@@ -15,13 +15,11 @@ require 'app/models/resepti.php';
 
     }
 
-    public static function resepti(){
-      // Testaa koodiasi täällä
-      
-    
-      View::make('resepti.html');
-  
-       }
+    public static function resepti($id){
+        $resepti = Resepti::find($id);
+        
+        View::make('resepti.html', array('resepti' => $resepti)); 
+    }
        public static function highest(){
           
         $highest = 0;
@@ -54,10 +52,17 @@ require 'app/models/resepti.php';
             'description' => $params['description']
         );
     $resepti = new Resepti($attributes);
-   
-    $resepti-> save();
-    Redirect::to('/reseptilista' , array('message' => 'Resepti lisätty!'));
-  }
+    
+    $errors = $resepti->errors();
+    
+    if (count($errors) == 0) {
+        $resepti->save();
+        Redirect::to('/resepti/' . $resepti->id, array('message' => 'Resepti lisätty!'));
+    } else {
+        View::make('reseptinlisays.html', array('errors' => $errors, 'attributes' => $attributes));
+    }
+    }
+  
     public function save(){
     // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
     $query = DB::connection()->prepare('INSERT INTO Resepti (name, description) VALUES (:name, :description) RETURNING id');
