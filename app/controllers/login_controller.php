@@ -25,7 +25,7 @@ require 'app/models/kayttaja.php';
     public static function handle_login(){
     $params = $_POST;
 
-    Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $user->name . '!'));
+    Redirect::to('/');
 
     $user = Kayttaja::authenticate($params['name'], $params['password']);
 

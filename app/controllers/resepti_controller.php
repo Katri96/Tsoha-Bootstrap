@@ -31,11 +31,6 @@ require 'app/models/resepti.php';
         }
         return $highest;
     }
-    
-    public static function reseptinmuokkaus(){
-    
-      View::make('reseptin_muokkaus.html');
-    }
   
      public static function reseptinlisays(){
       // Testaa koodiasi täällä
@@ -78,7 +73,7 @@ require 'app/models/resepti.php';
   
   public static function edit($id){
     $resepti = Resepti::find($id);
-    View::make('resepti/edit.html', array('attributes' => $resepti));
+    View::make('reseptin_muokkaus.html', array('attributes' => $resepti));
   }
 
   // Reseptin muokkaaminen (lomakkeen käsittely)
@@ -95,7 +90,7 @@ require 'app/models/resepti.php';
     $errors = $resepti->errors();
 
     if(count($errors) > 0){
-      View::make('resepti/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+      View::make('reseptin_muokkaus.html', array('errors' => $errors, 'attributes' => $attributes));
     }else{
       // Kutsutaan alustetun olion update-metodia, joka päivittää reseptin tiedot tietokannassa
       $resepti->update();

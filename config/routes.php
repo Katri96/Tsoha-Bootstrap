@@ -4,22 +4,23 @@
     etusivucontroller::etusivu();
   });
 
+
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });
   $routes->get('/reseptilista', function() {
       resepticontroller::reseptilista();
   });
-  $routes->get('/login', function() {
-  logincontroller::login();
-  });
-  $routes->get('/login/1', function() {
-  logincontroller::loginjuttui();
-  });
-  $routes->post('/login', function(){
+    $routes->post('/login', function(){
   // Kirjautumisen käsittely
   logincontroller::handle_login();
 });
+  
+  $routes->get('/login', function() {
+  logincontroller::login();
+  });
+
+
   $routes->get('/register', function() {
       logincontroller::register();
   });
@@ -44,13 +45,15 @@ $routes->get('/reseptinlisays/new', function(){
   $routes->get('/resepti/::id', function() {
       resepticontroller::show($id);
   });
+  
+
+    $routes->post('/resepti/:id/edit', function($id){
+  // Reseptin muokkauksen esittäminen
+  reseptiController::update($id);
+});
   $routes->get('/resepti/:id/edit', function($id){
   // Reseptin muokkauksen esittäminen
   reseptiController::edit($id);
-});
-$routes->post('/resepti/:id/edit', function($id){
-  // Pelin muokkaaminen
-  reseptiController::update($id);
 });
 
 $routes->post('/resepti/:id/destroy', function($id){
