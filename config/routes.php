@@ -11,22 +11,26 @@
   $routes->get('/reseptilista', function() {
       resepticontroller::reseptilista();
   });
-    $routes->post('/login', function(){
-  // Kirjautumisen käsittely
-  logincontroller::handle_login();
-});
+  
+   
+  $routes->post('/login', function() {
+      logincontroller::handle_login();
+  });
   
   $routes->get('/login', function() {
-  logincontroller::login();
-  });
-
-
-  $routes->get('/register', function() {
-      logincontroller::register();
+    logincontroller::login();
   });
   
-    $routes->get('/resepti/:id', function($id) {
-      resepticontroller::resepti($id);
+  $routes->post('/logout', function() {
+    logincontroller::logout();
+  });
+  
+  $routes->post('/register', function() {
+    logincontroller::handle_register();
+  });
+  
+  $routes->get('/register', function() {
+    logincontroller::register();
   });
  
   $routes->get('/reseptinmuokkaus', function() {

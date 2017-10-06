@@ -6,6 +6,7 @@ class Kayttaja extends BaseModel{
     
     public function __construct($attributes) {
         parent::__construct($attributes);
+         $this->validators = array('validate_username', 'validate_password');
     }
     
     public static function find($id) {
@@ -44,6 +45,14 @@ class Kayttaja extends BaseModel{
             return null;
         }
     }
+    
+    public function save(){
+        $query = DB::connection()->prepare("INSERT INTO Kayttaja (name, password) VALUES (:name, :password) RETURNING id");
+        $query->execute(array('name' => $this->name, 'password' => $this->password));
+        $row = $query->fetch();
+        $this->id = $row['id'];     
+    }
+    
     
     
 }

@@ -45,10 +45,46 @@
       </div>
     </nav>
 
+                  {% if user_logged_in %}
+                <form class="navbar-form navbar-right" method="post" action="{{base_path}}/logout">
+                    <button type="submit" class="btn btn-link">Kirjaudu ulos</button>
+                </form>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/tsoha_projekti/login">Login</a></li>
+                    <li><a href="/tsoha_projekti/register">Register</a></li>
+                </ul>
+            {% endif %}
+        </div>
+      </div>
+    </nav>
+
+ 
     <div id="main-container">
       <!-- Dynaaminen sisältö tulee tähän -->
+        {% if message %}
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+        {% endif %}
+
+        {% if errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for error in errors %}
+                    <li>{{error}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        {% if error %}
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
+        {% endif %}
       {% block content %}{% endblock %}
-    </div>
+</div>
 
     {% block body %}
       <!-- jQuery -->
@@ -60,5 +96,6 @@
       <!-- Oma skriptitiedostomme -->
       <script src="{{base_path}}/assets/js/site.js"></script>
     {% endblock %}
+    
   </body>
 </html>

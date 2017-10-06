@@ -3,25 +3,27 @@
 require 'app/models/kayttaja.php';
  class logincontroller extends BaseController {
      
-       public static function index(){
+    public static function index(){
     // Haetaan kaikki pelit tietokannasta
     $kayttajat = Kayttaja::all();
     // Renderöidään views/kayttaja kansiossa sijaitseva tiedosto index.html muuttujan $games datalla
     View::make('kayttaja/index.html', array('kayttajat' => $kayttajat));
   }
-
+    //sisäänkirjautuminen
     public static function login(){
       // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
         View::make('login.html');
     }
     
+    //testausta
     public static function loginjuttui() {
     
-    $kayttajat = Kayttaja::all();
-    // Kint-luokan dump-metodi tulostaa muuttujan arvon
+    $kayttajat = Kayttaja::all();   
     Kint::dump($kayttajat);
 
     }
+    
+    // sisäänkirjautumisen käsittely
     public static function handle_login(){
     $params = $_POST;
 
@@ -38,7 +40,38 @@ require 'app/models/kayttaja.php';
     }
   }
   
+  // rekisteröinti
     public static function register(){
         View::make('register.html');
+        
     }
+    
+    // rekisteröinnin käsittely
+    public static function handle_register() {
+        $params = $_POST;
+        
+        $attributes = array(
+            'name' => $params['name'],
+            'password' => $params['password'],
+        );
+        
+        $salasana = $params['password'];
+            $user = new Kayttaja($attributes);
+            $errors = $user->errors();
+            if (count($errors) == 0) {
+                $user->save();
+                Redirect::to('/login', array('message' => 'You have created an account!'));
+            } else {
+                View::make('register.html', array('attributes' => $attributes, 'errors' => $errors));
+            }
+        
+        
+    }
+    
+    //Uloskirjautuminen
+    public static function logout() {
+        $_SESSION['user'] = null;
+        Redirect::to('/login', array('message' => 'You have logged out!'));
+    }
+    
  }
