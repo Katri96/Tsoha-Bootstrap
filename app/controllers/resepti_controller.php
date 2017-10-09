@@ -15,6 +15,7 @@ require 'app/models/resepti.php';
 
     }
 
+
     public static function resepti($id){
         $resepti = Resepti::find($id);
         

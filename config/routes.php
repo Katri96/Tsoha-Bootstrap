@@ -33,6 +33,10 @@
     logincontroller::register();
   });
  
+  $routes->get('/resepti/:id', function($id) {
+      resepticontroller::resepti($id);
+  });
+  
   $routes->get('/reseptinmuokkaus', function() {
       resepticontroller::reseptinmuokkaus();
   });
@@ -46,10 +50,8 @@ $routes->post('/reseptinlisays/store', function(){
 $routes->get('/reseptinlisays/new', function(){
   resepticontroller::save();
 });
-  $routes->get('/resepti/::id', function() {
-      resepticontroller::show($id);
-  });
-  
+
+
 
     $routes->post('/resepti/:id/edit', function($id){
   // Reseptin muokkauksen esittäminen
