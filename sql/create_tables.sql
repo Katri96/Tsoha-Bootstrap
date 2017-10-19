@@ -25,11 +25,8 @@ CREATE TABLE Arviointi(
 id SERIAL PRIMARY KEY,
 resepti_id INTEGER REFERENCES Resepti(id),
 kayttaja_id INTEGER REFERENCES Kayttaja(id),
-arvio INTEGER NOT NULL
+arvio INTEGER NOT NULL,
+description varchar(400)
 );
 
-CREATE TABLE Reseptilista(
-id SERIAL PRIMARY KEY,
-resepti_id INTEGER REFERENCES Resepti(id)
-);
 

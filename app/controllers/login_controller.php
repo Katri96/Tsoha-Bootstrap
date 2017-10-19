@@ -16,18 +16,10 @@ require 'app/models/kayttaja.php';
     }
     
     //testausta
-    public static function loginjuttui() {
-    
-    $kayttajat = Kayttaja::all();   
-    Kint::dump($kayttajat);
 
-    }
-    
     // sisäänkirjautumisen käsittely
     public static function handle_login(){
     $params = $_POST;
-
-    Redirect::to('/');
 
     $user = Kayttaja::authenticate($params['name'], $params['password']);
 

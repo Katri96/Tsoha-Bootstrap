@@ -72,9 +72,19 @@ require 'app/models/resepti.php';
   }
   // viikko 4 
   
+    // Reseptin poistaminen
+  public static function destroy($id){
+    // Alustetaan Game-olio annetulla id:llä
+    $resepti = new Resepti(array('id' => $id));
+    // Kutsutaan Game-malliluokan metodia destroy, joka poistaa pelin sen id:llä
+    $resepti->destroy();
+
+    // Ohjataan käyttäjä pelien listaussivulle ilmoituksen kera
+    Redirect::to('/reseptilista', array('message' => 'Resepti poistettu'));
+  }
   public static function edit($id){
     $resepti = Resepti::find($id);
-    View::make('reseptin_muokkaus.html', array('attributes' => $resepti));
+    View::make('reseptin_muokkaus.html', array('resepti' => $resepti));
   }
 
   // Reseptin muokkaaminen (lomakkeen käsittely)
@@ -90,25 +100,17 @@ require 'app/models/resepti.php';
     $resepti = new Resepti($attributes);
     $errors = $resepti->errors();
 
-    if(count($errors) > 0){
-      View::make('reseptin_muokkaus.html', array('errors' => $errors, 'attributes' => $attributes));
-    }else{
-      // Kutsutaan alustetun olion update-metodia, joka päivittää reseptin tiedot tietokannassa
-      $resepti->update();
-
-      Redirect::to('/resepti/' . $resepti->id, array('message' => 'Resepti muokattu'));
+    if(count($errors) == 0){
+      $resepti ->update($id);
+      
+      Redirect::to('/resepti/' . $id, array('message' => 'Resepti muokattu'));
+ 
+    } else{
+        View::make('reseptin_muokkaus.html', array('errors' => $errors, 'attributes' => $attributes));
+        
     }
   }
 
-  // Reseptin poistaminen
-  public static function destroy($id){
-    // Alustetaan Game-olio annetulla id:llä
-    $resepti = new Resepti(array('id' => $id));
-    // Kutsutaan Game-malliluokan metodia destroy, joka poistaa pelin sen id:llä
-    $resepti->destroy();
 
-    // Ohjataan käyttäjä pelien listaussivulle ilmoituksen kera
-    Redirect::to('/resepti', array('message' => 'Resepti poistettu'));
-  }
 
   }

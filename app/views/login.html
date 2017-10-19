@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-         <title>PHP in HTML Example</title>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+   {% extends "base.html" %}
+{% block content %}
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-       
   <h1>Kirjaudu sisään</h1>
 
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
- 
+ <li><a href="{{base_path}}/register">Rekistetöidy tästä!</a></li>
       
  <form method="post" action="{{base_path}}/login">
     <!-- Tekstikenttä käyttäjätunnukselle -->
@@ -36,5 +22,4 @@ and open the template in the editor.
     <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
   </form>
 
-    </body>
-</html>
+{% endblock %}

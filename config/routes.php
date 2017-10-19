@@ -37,9 +37,7 @@
       resepticontroller::resepti($id);
   });
   
-  $routes->get('/reseptinmuokkaus', function() {
-      resepticontroller::reseptinmuokkaus();
-  });
+
  $routes->get('/reseptinlisays', function() {
      resepticontroller::reseptinlisays();
   });
@@ -52,17 +50,20 @@ $routes->get('/reseptinlisays/new', function(){
 });
 
 
-
+$routes->post('/resepti/:id/destroy', function($id){
+  // Pelin poisto
+  resepticontroller::destroy($id);
+});
     $routes->post('/resepti/:id/edit', function($id){
   // Reseptin muokkauksen esittäminen
-  reseptiController::update($id);
+  resepticontroller::update($id);
 });
   $routes->get('/resepti/:id/edit', function($id){
   // Reseptin muokkauksen esittäminen
-  reseptiController::edit($id);
+  resepticontroller::edit($id);
 });
+  $routes->post('/resepti/:id', function($id){
+      arviointicontroller::store($id);
+  });
 
-$routes->post('/resepti/:id/destroy', function($id){
-  // Pelin poisto
-  reseptiController::destroy($id);
-});
+

@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+   {% extends "base.html" %}
+{% block content %}
 
-<html>
-    <head>
-        <title>PHP in HTML Example</title>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-
-        
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <h1>Reseptilista</h1>
-                
-  <h1></h1>
- <h1></h1>
   <h1>Hae reseptiä:</h1>
   <input placeholder="Tavallinen tekstikenttä" type="text">
   <button>Hae</button>
@@ -29,21 +10,26 @@ and open the template in the editor.
     <thead>
       <tr>
         <th>Nimi</th>
-        <th>Ohje</th>
+        <th>Ohje</th> 
+        <th>Arviointi</th>
          
       </tr>
     </thead>
     <tbody>
         {% for resepti in reseptit %}
         <tr>
-        <td>{{resepti.name}}</td>
+            
+        
+         <td><a href="{{base_path}}/resepti/{{resepti.id}}">{{resepti.name}}</a></td>
         <td>{{resepti.description}}</td>
+        
+        <td> {{resepti.arviointi}} </td>
+        
       </tr>
+     {% endfor %}
      
-      {% endfor %}
     </tbody>
+     
   </table>
 
-        
-    </body>
-</html>
+{% endblock %}

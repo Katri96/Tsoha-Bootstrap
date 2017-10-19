@@ -9,11 +9,7 @@ require 'app/models/resepti.php';
     }
     
   public static function sandbox(){
-    $skyrim = Game::find(1);
-    $games = Game::all();
-    // Kint-luokan dump-metodi tulostaa muuttujan arvon
-    Kint::dump($games);
-    Kint::dump($skyrim);
+    View::make('helloworld.html');
 
   }
 }

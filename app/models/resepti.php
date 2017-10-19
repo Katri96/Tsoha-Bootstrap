@@ -2,7 +2,7 @@
 
 class Resepti extends BaseModel {
     
-    public $id, $aine_id, $name, $tyyppi, $hinta, $description, $added;
+    public $id, $aine_id, $name, $tyyppi, $hinta, $description, $added, $arviointi;
     
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -12,7 +12,7 @@ class Resepti extends BaseModel {
     
     public static function all() {    
     
-    $query = DB::connection()->prepare('SELECT * FROM Resepti');
+    $query = DB::connection()->prepare('SELECT Resepti. *, AVG(Arviointi.number) AS arviointi FROM Resepti LEFT JOIN Arviointi ON Resepti.id=Arviointi.resepti_id GROUP BY Resepti.id ORDER BY Resepti.name ASC');
     $query->execute();
     $rows = $query->fetchAll();
     $reseptit = array();
@@ -21,11 +21,12 @@ class Resepti extends BaseModel {
       $reseptit[] = new Resepti(array(
         'id' => $row['id'],
         'name' => $row['name'],
-        'description' => $row['description']
+        'description' => $row['description'],
+        'arviointi' => number_format($row['arviointi'], 1)
       ));
 
-      return $reseptit;
-    }
+      
+    }return $reseptit;
 
     // return null;
   }
@@ -58,7 +59,7 @@ class Resepti extends BaseModel {
     }
     
     public function destroy(){
-        $query = DB::connection()->prepare('DELETE FROM Resepti WHERE resepti_id = :id');
+        $query = DB::connection()->prepare('DELETE FROM Resepti WHERE id = :id');
         $query->execute(array('id' => $this->id));
 
     }

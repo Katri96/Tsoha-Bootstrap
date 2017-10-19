@@ -1,43 +1,26 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-            
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-
-        <title>Muokaa reseptiä</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        
-  <table class="table table-bordered table-striped">
-            <h1>{{resepti.name}}</h1>
+   {% extends "base.html" %}
+{% block content %}
 
 
-
-  <form method="post" action="{{base_path}}/reseptilista">
-
-
+<h1> Muokkaa {{resepti.name}}</h1>
+  
+  
+  <form method="post" action="{{base_path}}/resepti/{{resepti.id}}/edit">
     <div class="form-group">
       <label>Nimi</label>
       <input name="name" class="form-control" value="{{resepti.name}}" type="text">
     </div>
-
+    
     <div class="form-group">
       <label>Ohje</label>
-      <input name="description" class="form-control"  value="{{resepti.description}}" type="text">
+      <input name="description" class="form-control" value="{{resepti.description}}" type="text">
     </div>
-
+   
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+      <button type="submit" class="btn btn-success">Tallenna muutokset</button>
     </div>
-  </form>
+</form>
 
-    </body>
-</html>
+{% endblock %}
+
+
