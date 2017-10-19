@@ -14,11 +14,10 @@ class arviointicontroller extends BaseController {
         'number' => $number
         ));
         
-        
             $arvio->save();
-        
-        Redirect::to('/reseptilista', array('message' => 'Arviointisi on lisätty!'));
-    }
+            Redirect::to('/reseptilista', array('message' => 'Arviointisi on lisätty!'));
+ 
+        }
     
     
 }

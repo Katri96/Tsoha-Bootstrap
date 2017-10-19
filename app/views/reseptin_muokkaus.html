@@ -1,8 +1,11 @@
    {% extends "base.html" %}
 {% block content %}
 
+{% if user_logged_in %}
 
-<h1> Muokkaa {{resepti.name}}</h1>
+
+
+<h1> Muokkaa reseptiä: {{resepti.name}}</h1>
   
   
   <form method="post" action="{{base_path}}/resepti/{{resepti.id}}/edit">
@@ -20,7 +23,9 @@
       <button type="submit" class="btn btn-success">Tallenna muutokset</button>
     </div>
 </form>
-
+  {% else %}
+  <h1> Kirjaudu ensin sisään! </h1>
+{% endif %}
 {% endblock %}
 
 

@@ -59,8 +59,14 @@ class Resepti extends BaseModel {
     }
     
     public function destroy(){
+        
+        $query = DB::connection()->prepare('DELETE FROM Arviointi WHERE resepti_id = :id');
+        $query->execute(array('id' => $this->id));
+        
         $query = DB::connection()->prepare('DELETE FROM Resepti WHERE id = :id');
         $query->execute(array('id' => $this->id));
+        
+        
 
     }
     

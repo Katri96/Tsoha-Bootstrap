@@ -1,6 +1,8 @@
    {% extends "base.html" %}
 {% block content %}
 
+{% if user_logged_in %}
+
   <h1>Lisää resepti</h1>
 
   <form method="post" action="{{base_path}}/reseptinlisays/store">
@@ -19,4 +21,8 @@
       <button type="submit" class="btn btn-primary">Lisää</button>
     </div>
   </form>
+  {% else %}
+  <h1> Kirjaudu ensin sisään! </h1>
+  
+  {% endif %}
  {% endblock %}
