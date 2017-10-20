@@ -49,6 +49,7 @@ class Arviointi extends BaseModel {
   
     
     public function save(){
+        
         $query = DB::connection()->prepare('INSERT INTO Arviointi (resepti_id, number) VALUES (:resepti_id, :number) RETURNING id');
         $query->execute(array('resepti_id' => $this->resepti_id, 'number' => $this->number));
         $row = $query->fetch();

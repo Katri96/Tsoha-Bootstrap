@@ -65,5 +65,12 @@ require 'app/models/kayttaja.php';
         $_SESSION['user'] = null;
         Redirect::to('/login', array('message' => 'You have logged out!'));
     }
+        
+    public static function kayttajat(){
+      // Testaa koodiasi täällä
+      $kayttajat = Kayttaja::all();
+      View::make('kayttajalista.html', array('kayttajat'=> $kayttajat));
+
+    }
     
  }

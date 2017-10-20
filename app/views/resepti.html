@@ -1,11 +1,11 @@
-   {% extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
 {% if user_logged_in %}
   <p>
     <form method="post" action="{{base_path}}/resepti/{{resepti.id}}/destroy" style="margin: 2% 2% 2% 2%">
-        <button type="submit" class="btn btn-danger pull-right">Delete</button>
+        <button type="submit" class="btn btn-danger pull-right">Poista</button>
     </form>
-  <a href="{{base_path}}/resepti/{{resepti.id}}/edit" class="btn btn-default pull-right">Edit</a>
+  <a href="{{base_path}}/resepti/{{resepti.id}}/edit" class="btn btn-default pull-right">Muokkaa</a>
 {% endif %}
 
         <h1>{{resepti.name}}</h1>
@@ -14,8 +14,8 @@
         <h4>{{resepti.description}}</h4>
         
         {% if user_logged_in %}
-  <h3>Arvioi resepti (1-10)</h3>
-      <form method="post" action="{{base_path}}/resepti/{{resepti.id}}" class="form-inline">
+        <h3>Arvioi resepti (1-10)</h3>
+        <form method="post" action="{{base_path}}/resepti/{{resepti.id}}" class="form-inline">
         <div class="form-group">
             <input name="number" class="form-control" value="" type="number" min="1" max="10" required>
         </div>
@@ -23,6 +23,6 @@
             <button type="submit" class="btn btn-success">Tallenna</button>
         </div>
         </form>
-{% endif %}
+        {% endif %}
          
 {% endblock %}

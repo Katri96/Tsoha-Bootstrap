@@ -5,9 +5,10 @@
   });
 
 
-  $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
+  $routes->get('/kayttajalista', function() {
+      logincontroller::kayttajat();
   });
+ 
   $routes->get('/reseptilista', function() {
       resepticontroller::reseptilista();
   });

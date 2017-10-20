@@ -25,6 +25,23 @@ class Kayttaja extends BaseModel{
         return $user;
         }
     }
+    public static function all() {    
+    
+    $query = DB::connection()->prepare('SELECT * FROM Kayttaja');
+    $query->execute();
+    $rows = $query->fetchAll();
+    $kayttajat = array();
+
+    foreach($rows as $row){
+      $kayttajat[] = new Kayttaja(array(
+        'id' => $row['id'],
+        'name' => $row['name'],
+        'password' => $row['password']
+      ));
+
+      
+    }return $kayttajat;
+        }
     
     public static function authenticate($name, $password) {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE name = :name AND password = :password LIMIT 1');
